@@ -1,0 +1,77 @@
+
+[
+    {
+      "image": "pizza1.png",
+      "title": "Pepperoni with Garlic",
+      "category": "Pizza",
+      "rating": 4.97,
+      "price": 8.70, 
+      "subPrice": 5.00
+    },
+    {
+        "image": "food_head.png",
+        "title": "Tomato Spagetti",
+        "category": "Food",
+        "rating": 4.90,
+        "price": 9.00,
+        "subPrice": 7.10
+      },
+    {
+      "image": "burger1.png",
+      "title": "Burger with Salad",
+      "category": "Burger",
+      "rating": 4.75,
+      "price": 6.50, 
+      "subPrice": 4.40
+    },
+    {
+      "image": "food1.png",
+      "title": "Belleful Chinese Jolof",
+      "category": "Food",
+      "rating": 4.85,
+      "price": 9.50, 
+      "subPrice": 6.00
+    },
+    {
+      "image": "burger2.png",
+      "title": "Meat Burger",
+      "category": "Burger",
+      "rating": 4.90,
+      "price": 7.00, 
+      "subPrice": 4.00
+    },
+    {
+        "image": "pizza3.png",
+        "title": "Pepperoni with Dodo",
+        "category": "Pizza",
+        "rating": 4.90,
+        "price": 7.00, 
+        "subPrice": 4.00
+    },
+    {
+        "image": "food3.png",
+        "title": "Tomato Spagetti",
+        "category": "Food",
+        "rating": 4.90,
+        "price": 9.00,
+        "subPrice": 7.10
+      }, 
+
+      {
+        "image": "pizza_head.png",
+        "title": "Pepperoni with Dodo",
+        "category": "Pizza",
+        "rating": 4.60,
+        "price": 5.80,
+        "subPrice": 4.20
+      },  
+      {
+        "image": "food2.png",
+        "title": "Tomato Spagetti",
+        "category": "Food",
+        "rating": 4.90,
+        "price": 9.00,
+        "subPrice": 7.10
+      }
+  ]
+  

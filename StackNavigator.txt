@@ -1,0 +1,51 @@
+import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+const Stack = createStackNavigator()
+
+function StackNavigator(){
+    return(
+        <NavigationContainer>
+        <Stack.Navigator>
+            <Navigator>
+                <Stack.Screen 
+                 name="Home"
+                 component={HomeScreen}
+                 options={{headerShown: false}}
+                />
+                <Stack.Screen
+                 name="Cart"
+                 component={CartScreen}
+                 options={{headerShown: false}}
+                 />
+            </Navigator>
+        </Stack.Navigator>
+        </NavigationContainer>
+    )
+}
+
+
+// const StackNavigator = ()=>{
+//     const Stack = createStackNavigator()
+
+//     return(
+//         <Stack.Navigator>
+//             <Navigator>
+//                 <Stack.Screen 
+//                  name="Home"
+//                  component={HomeScreen}
+//                  options={{headerShown: false}}
+//                 />
+//                 <Stack.Screen
+//                  name="Cart"
+//                  component={CartScreen}
+//                  options={{headerShown: false}}
+//                  />
+//             </Navigator>
+//         </Stack.Navigator>
+//     )
+// }
+
+export default StackNavigator
