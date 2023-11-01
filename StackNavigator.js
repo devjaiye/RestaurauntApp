@@ -26,7 +26,7 @@ export default function StackNavigator() {
         <Stack.Screen
           name="Details"
           component={DetailsScreen}
-          options={{ headerShown: true, cardStyle: { backgroundColor: 'white' }  }}
+          options={{ headerShown: false, cardStyle: { backgroundColor: 'white' }  }}
         />
         <Stack.Screen
           name="OtherMenu"

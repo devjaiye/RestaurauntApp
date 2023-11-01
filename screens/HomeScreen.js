@@ -1,16 +1,25 @@
-import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import Categories from "../components/Categories";
 import FavMenu from "../components/FavMenu";
 import OtherMenu from "../components/OtherMenu";
-import Fab from "../components/Fab";
+
 
 const HomeScreen = () => {
   return (
-    <ScrollView contentContainerStyle={styles.container}
-     showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       {/* nav bar */}
       <View style={styles.navContainer}>
         <EvilIcons name="navicon" size={18} color="black" />
@@ -24,16 +33,19 @@ const HomeScreen = () => {
       {/* categories scroll */}
       <View style={{ marginTop: 30, paddingLeft: 10, paddingRight: 10 }}>
         <Text style={{ fontSize: 20, fontWeight: 300 }}>
-          What would you like <br />
-          <div style={{ fontWeight: "bold", fontSize: 26 }}>to eat?</div>
+          What would you like{" "}
+          <Text style={{ fontWeight: "bold", fontSize: 26 }}>to eat?</Text>
         </Text>
         <Categories />
       </View>
-      {/* Menu and OtherMenu  */}
-        <FavMenu/>
+
+     <FavMenu/>
+
+     <OtherMenu/>
+       {/*
         <View style={{marginBottom: 40}}>
         <OtherMenu/>
-        </View>
+        </View> */}
     </ScrollView>
   );
 };
@@ -42,23 +54,23 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    backgroundColor: 'white',
-    flex: 1
+    marginTop: 50,
+    backgroundColor: "white",
+    flex: 1,
   },
-//   fabContainer: {
-//     position: 'absolute',
-//     bottom: 20,
-//     right: 20,
-//     zIndex: 1
-//   },
-  navContainer:{
+  //   fabContainer: {
+  //     position: 'absolute',
+  //     bottom: 20,
+  //     right: 20,
+  //     zIndex: 1
+  //   },
+  navContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingLeft: 10,
-    paddingRight: 10
-  }, 
+    paddingRight: 10,
+  },
   textInputContainer: {
     flexDirection: "row",
     borderWidth: 1,

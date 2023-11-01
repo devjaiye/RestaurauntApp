@@ -2,16 +2,26 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import Options from "../components/Options";
+import { useNavigation } from "@react-navigation/native";
+import Fab from "../components/Fab";
 
 const DetailsScreen = ({ route }) => {
+  const navigation = useNavigation();
   const { item } = route.params;
+
+  const backBtn = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={{ marginLeft: 10, marginTop: 10 }}
+        onPress={backBtn}
+      >
+        <AntDesign name="arrowleft" size={18} color="black" />
+      </TouchableOpacity>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.imageX}
-          source={require(`../assets/${item.image}`)}
-        />
+        <Image style={styles.imageX} source={{ uri: item.image }} />
       </View>
       <View style={styles.textContainer}>
         <View style={{ flexDirection: "row", gap: 2, marginBottom: 5 }}>
@@ -27,11 +37,18 @@ const DetailsScreen = ({ route }) => {
         </View>
       </View>
       <View style={styles.valueWrapper}>
-        <TouchableOpacity style={styles.value}>S</TouchableOpacity>
-        <TouchableOpacity style={styles.value}>M</TouchableOpacity>
-        <TouchableOpacity style={styles.value}>L</TouchableOpacity>
+        <TouchableOpacity style={styles.value}>
+          <Text>S</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.value}>
+          <Text>M</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.value}>
+          <Text>L</Text>
+        </TouchableOpacity>
       </View>
-      <Options/>
+      {/* Options component... */}
+      <Options />
     </View>
   );
 };
@@ -41,10 +58,9 @@ export default DetailsScreen;
 const styles = StyleSheet.create({
   container: {
     marginTop: 10,
-    // flex: "1",
+    flex: 1,
   },
   imageContainer: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
