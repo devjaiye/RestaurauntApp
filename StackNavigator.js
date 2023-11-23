@@ -4,6 +4,7 @@ import HomeScreen from "./screens/HomeScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import OtherMenu from "./components/OtherMenu";
 import FavMenu from "./components/FavMenu";
+import CartScreen from "./screens/CartScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,12 @@ export default function StackNavigator() {
           name="OtherMenu"
           component={OtherMenu}
           options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name = "Cart"
+          component={CartScreen}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,6 @@
 import {
   Image,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,57 +14,74 @@ import Categories from "../components/Categories";
 import FavMenu from "../components/FavMenu";
 import OtherMenu from "../components/OtherMenu";
 
-
 const HomeScreen = () => {
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
-      {/* nav bar */}
-      <View style={styles.navContainer}>
-        <EvilIcons name="navicon" size={18} color="black" />
-        <View style={styles.textInputContainer}>
-          <Ionicons name="location" size={18} color="black" />
-          <TextInput placeholder="Enter location" style={styles.textInput} />
+    <SafeAreaView style={styles.homeStyle}>
+    <ScrollView>
+
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* nav bar */}
+        <View style={styles.navContainer}>
+          <EvilIcons name="navicon" size={18} color="black" />
+          <View style={styles.textInputContainer}>
+            <Ionicons name="location" size={18} color="black" />
+            <TextInput placeholder="Enter location" style={styles.textInput} />
+          </View>
+          <Ionicons name="search" size={18} color="black" />
         </View>
-        <Ionicons name="search" size={18} color="black" />
-      </View>
 
-      {/* categories scroll */}
-      <View style={{ marginTop: 30, paddingLeft: 10, paddingRight: 10 }}>
-        <Text style={{ fontSize: 20, fontWeight: 300 }}>
-          What would you like{" "}
-          <Text style={{ fontWeight: "bold", fontSize: 26 }}>to eat?</Text>
-        </Text>
-        <Categories />
-      </View>
+        <View style={styles.headerTextContainer}>
+          <Text style={styles.textOne}>What would you like </Text>
+          <Text style={styles.textTwo}>to eat?</Text>
+        </View>
 
-     <FavMenu/>
+        {/* categories scroll */}
+        <View style={styles.categories}>
+          <Categories />
+        </View>
 
-     <OtherMenu/>
-       {/*
+        <FavMenu />
+
+        <OtherMenu />
+        {/*
         <View style={{marginBottom: 40}}>
         <OtherMenu/>
         </View> */}
-    </ScrollView>
+      </ScrollView>
+       </ScrollView>
+    </SafeAreaView>
+    
   );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  homeStyle: {
+    paddingTop: 10,
+    flex: 1,
+  },
   container: {
-    marginTop: 50,
+    marginTop: 30,
     backgroundColor: "white",
     flex: 1,
   },
-  //   fabContainer: {
-  //     position: 'absolute',
-  //     bottom: 20,
-  //     right: 20,
-  //     zIndex: 1
-  //   },
+  headerTextContainer: {
+    marginTop: 30,
+    paddingLeft: 10,
+    flexDirection: "column",
+  },
+  textOne: {
+    fontSize: 20,
+    fontWeight: "300",
+  },
+  textTwo: {
+    fontWeight: "bold",
+    fontSize: 26,
+  },
   navContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -86,4 +104,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "gray",
   },
+  categories: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  //   fabContainer: {
+  //     position: 'absolute',
+  //     bottom: 20,
+  //     right: 20,
+  //     zIndex: 1
+  //   },
 });

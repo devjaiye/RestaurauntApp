@@ -1,55 +1,86 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+import React, {useState} from "react";
 import { AntDesign } from "@expo/vector-icons";
 import Options from "../components/Options";
 import { useNavigation } from "@react-navigation/native";
-import Fab from "../components/Fab";
 
 const DetailsScreen = ({ route }) => {
   const navigation = useNavigation();
   const { item } = route.params;
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const backBtn = () => {
     navigation.goBack();
   };
+
+  const handleScroll = (event) => {
+    setIsScrolled(event.nativeEvent.contentOffset.y > 0);
+  };
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={{ marginLeft: 10, marginTop: 10 }}
-        onPress={backBtn}
-      >
-        <AntDesign name="arrowleft" size={18} color="black" />
-      </TouchableOpacity>
-      <View style={styles.imageContainer}>
-        <Image style={styles.imageX} source={{ uri: item.image }} />
+    <SafeAreaView style={styles.container}>
+      <View style={[styles.navBar, isScrolled && styles.stickyNavBar]}>
+        <Pressable
+          style={{ marginLeft: 10, marginTop: 10 }}
+          onPress={backBtn}
+        >
+          <AntDesign name="arrowleft" size={18} color="black" />
+        </Pressable>
       </View>
-      <View style={styles.textContainer}>
+      <ScrollView onScroll={handleScroll} scrollEventThrottle={16}>
+      <View style={styles.contentContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.imageX} source={{ uri: item.image }} />
+        </View>
+
+        <View style={styles.textContainer}>
+        
         <View style={{ flexDirection: "row", gap: 2, marginBottom: 5 }}>
-          <AntDesign name="star" size={12} color="orange" />{" "}
-          <Text style={styles.title}>{item.rating}</Text>
+        <AntDesign name="star" size={12} color="orange" />
+        <Text style={styles.title}>{item.rating}</Text>
         </View>
-        {/*  */}
+
         <View style={styles.titleContainer}>
-          <Text style={{ fontSize: 26, fontWeight: 600, color: "#000" }}>
-            {item.title}
-          </Text>
-          <Text style={{ fontSize: 20, fontWeight: 500 }}> $ {item.price}</Text>
+        <Text style={{ fontSize: 26, fontWeight: "600", color: "#000" }}>{item.title}</Text>
+            <Text style={{ fontSize: 20, fontWeight: "500" }}> {" "}$ {item.price}</Text>
         </View>
-      </View>
-      <View style={styles.valueWrapper}>
-        <TouchableOpacity style={styles.value}>
-          <Text>S</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.value}>
-          <Text>M</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.value}>
-          <Text>L</Text>
-        </TouchableOpacity>
-      </View>
-      {/* Options component... */}
-      <Options />
-    </View>
+        </View>
+
+
+        {/* <View style={styles.textContainer}>
+          <View style={{ flexDirection: "row", gap: 2, marginBottom: 5 }}>
+            <AntDesign name="star" size={12} color="orange" />{" "}
+            <Text style={styles.title}>{item.rating}</Text>
+          </View>
+          <View style={styles.titleContainer}>
+            <Text style={{ fontSize: 26, fontWeight: "600", color: "#000" }}>{item.title}</Text>
+            <Text style={{ fontSize: 20, fontWeight: "500" }}> {" "}$ {item.price}</Text>
+          </View>
+        </View>  */}
+        <View style={styles.valueWrapper}>
+          <Pressable style={styles.value}>
+            <Text>S</Text>
+          </Pressable>
+          <Pressable style={styles.value}>
+            <Text>M</Text>
+          </Pressable>
+          <Pressable style={styles.value}>
+            <Text>L</Text>
+          </Pressable>
+        </View>
+        {/* Options component... */}
+        <Options />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -57,8 +88,22 @@ export default DetailsScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
     flex: 1,
+  },
+  contentContainer: {
+    paddingTop: 40,
+  },
+  navBar: {
+    position: "absolute",
+    zIndex: 1,
+    elevation: 2,
+  },
+  stickyNavBar: {
+    position: "sticky",
+    top: 0,
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
   },
   imageContainer: {
     alignItems: "center",
@@ -96,5 +141,7 @@ const styles = StyleSheet.create({
     shadowColor: "gray",
     shadowOpacity: 0.4,
     shadowRadius: 6,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

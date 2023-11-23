@@ -1,13 +1,22 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, SafeAreaView } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Options = () => {
+  const navigation = useNavigation();
+
+  const gotoCartScreen = () => {
+    navigation.navigate("Cart");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 18, fontWeight: 500 }}>Add more stuff</Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={{ fontSize: 18, fontWeight: "500" }}>Add more stuff</Text>
+      </View>
       <View style={styles.wrapper}>
         <View style={styles.leftSection}>
           <Text>Cheese</Text>
@@ -74,11 +83,11 @@ const Options = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.cartIon}>
+        <TouchableOpacity style={styles.cartIon} onPress={gotoCartScreen}>
           <Feather name="shopping-bag" size={18} color="black" />
-        </View>
+        </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -87,7 +96,7 @@ export default Options;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative',
+    position: "relative",
     paddingTop: 30,
     paddingBottom: 30,
     marginTop: -5,
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 30,
     zIndex: -1,
     shadowColor: "gray",
-    borderColor: " #ddd",
+    borderColor: "#ddd",
     shadowRadius: 4,
     shadowOpacity: 0.2,
     elevation: 4,
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
   },
   counter: {
-    fontWeight: 700,
+    fontWeight: "700",
     paddingLeft: 7,
     paddingRight: 5,
   },

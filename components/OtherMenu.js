@@ -2,10 +2,12 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const OtherMenu = () => {
   const navigation = useNavigation();
   const [menuData, setMenuData] = useState([]);
+  const [error, setError] = useState(null);
 
   const goToDetailsScreen = (item) => {
     navigation.navigate("Details", { item });
@@ -14,11 +16,12 @@ const OtherMenu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch ('https://api.npoint.io/a636059902ab1683e649')
-        const data = await response.json()
-        setMenuData(data);
-      } catch (e) {
-        console.log("Error fetching data", e);
+        const response = await axios.get(
+          "https://api.npoint.io/a636059902ab1683e649"
+        );
+        setMenuData(response.data);
+      } catch (error) {
+        setError("Error fetching data: " + error.message);
       }
     };
     fetchData()
@@ -26,33 +29,21 @@ const OtherMenu = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headingText}>Business lunch</Text>
-
+      <View>
+        <Text style={styles.headingText}>Business lunch</Text>
+      </View>
       {menuData.map((item, index) => (
         <TouchableOpacity key={index} onPress={() => goToDetailsScreen(item)}>
           <View style={styles.cardContainer}>
             <View style={styles.containerOne}>
-              <Text style={{ fontSize: 18, fontWeight: 400 }}>
-                {item.title}
-              </Text>
-              <Text style={{ color: "gray", marginTop: 2 }}>
-                {item.category}
-              </Text>
-              <Text
-                style={{ paddingTop: 10, color: "orange", fontWeight: 500 }}
-              >
-                $ {item.subPrice}
-              </Text>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                $ {item.price}
-              </Text>
+              <Text style={styles.titleStyle}>{item.title}</Text>
+              <Text style={styles.categoryStyle}>{item.category}</Text>
+              <Text style={styles.subPriceStyle}>$ {item.subPrice}</Text>
+              <Text style={styles.priceStyle}>$ {item.price}</Text>
             </View>
             <View style={styles.containerTwo}>
               <View style={styles.imageWrapper}>
-                <Image
-                  style={styles.image}
-                  source={{uri: item.image}}
-                />
+                <Image style={styles.image} source={{ uri: item.image }} />
               </View>
             </View>
           </View>
@@ -98,6 +89,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginRight: -10,
   },
+  titleStyle: { fontSize: 18, fontWeight: "400" },
+  categoryStyle: { color: "gray", marginTop: 2 },
+  subPriceStyle: { paddingTop: 10, color: "orange", fontWeight: "500" },
+  priceStyle: { fontSize: 20, fontWeight: "bold" },
+
   //   imageWrapper: {
   //     shadowColor: "#000",
   //     shadowOffset: { width: 2, height: 2 },
