@@ -13,13 +13,44 @@ import { EvilIcons } from "@expo/vector-icons";
 import Categories from "../components/Categories";
 import FavMenu from "../components/FavMenu";
 import OtherMenu from "../components/OtherMenu";
-import CartScreen from "./CartScreen";
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.homeStyle}>
       <ScrollView>
-        <CartScreen/>     
+        <ScrollView
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* nav bar */}
+          <View style={styles.navContainer}>
+            <EvilIcons name="navicon" size={18} color="black" />
+            <View style={styles.textInputContainer}>
+              <Ionicons name="location" size={18} color="black" />
+              <TextInput
+                placeholder="Enter location"
+                style={styles.textInput}
+              />
+            </View>
+            <Ionicons name="search" size={18} color="black" />
+          </View>
+
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.textOne}>What would you like </Text>
+            <Text style={styles.textTwo}>to eat?</Text>
+          </View>
+
+          {/* categories scroll */}
+          <View style={styles.categories}>
+            <Categories />
+          </View>
+
+          <FavMenu />
+
+          <View style={{ marginBottom: 40 }}>
+            <OtherMenu />
+          </View>
+        </ScrollView>
       </ScrollView>
     </SafeAreaView>
   );
